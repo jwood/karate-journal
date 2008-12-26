@@ -1,0 +1,84 @@
+oi_zuki:
+  id: 1
+  title: Oi-Zuki
+  body: Bend that front knee.
+  source: Master Funakoshi
+  entry_type_id: 1
+  
+heian_shodan:
+  id: 2
+  title: Heian Shodan
+  body: Low hips!
+  source: Master Funakoshi
+  entry_type_id: 2
+  
+ippon_kumite:
+  id: 3
+  title: Ippon Kumite
+  body: Don't move before the attack!
+  source: Master Funakoshi
+  entry_type_id: 3
+  
+kick_kick:
+  id: 4
+  title: Kick Kick
+  body: Counter kick with your front foot!
+  source: Master Funakoshi
+  entry_type_id: 4
+  
+other:
+  id: 5
+  title: Other Entry
+  body: Blah blah blah
+  source: Master Funakoshi
+  entry_type_id: 5
+  
+ohshima_visit:
+  id: 6
+  title: Visit with Mr. Ohshima at the dojo
+  body: Practice daily!
+  source: Tsutomu Ohshima
+  entry_type_id: 6
+  
+summer_special_training:
+  id: 7
+  title: Summer Special Training
+  body: Nagewaza is difficult
+  source: Master Funakoshi
+  entry_type_id: 7
+  
+nisei_week:
+  id: 8
+  title: Nisei Week
+  body: Learn to size up other fighters quick!
+  source: Master Funakoshi
+  entry_type_id: 8
+
+front_kick:
+  id: 9
+  title: Front Kick
+  body: Kick with the ball of the foot.
+  source: Master Funakoshi
+  entry_type_id: 1
+  
+down_block:
+  id: 10
+  title: Down Block
+  body: This entry has a really really really really long body with a specific search string that I'm using to test the trimming of the search rsult entry.  When trimming the result string, we currently limit it to 500 characters.  We also only display the 30 characters immediately surronding the search term.
+  source: Master Funakoshi
+  entry_type_id: 1
+  
+rising_block:
+  id: 11
+  title: Rising Block
+  body: Pulling hand crosses inside of the blocking arm.
+  source: Master Funakoshi
+  entry_type_id: 1
+  
+reverse_punch:
+  id: 12
+  title: Reverse Punch
+  body: Make sure your shoulders are square
+  source: Master Funakoshi
+  entry_type_id: 1
+  

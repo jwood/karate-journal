@@ -1,0 +1,14 @@
+<%= error_messages_for 'entry' %>
+
+<p><label for="entry_title">Description</label><br/>
+<%= text_field 'entry', 'title', 'size' => 80  %></p>
+
+<p><label for="entry_body">Entry Body</label><br/>
+<%= text_area 'entry', 'body', 'cols' => 80, 'rows' => 20 %></p>
+
+<p><label for="entry_type">Entry Type</label><br/>
+<%= select("entry", "entry_type_id", 
+    EntryType.find(:all).collect { |t| [ t.description, t.id ] }, {}) %></p>
+
+<p><label for="entry_source">Source</label><br/>
+<%= text_field 'entry', 'source'  %></p>

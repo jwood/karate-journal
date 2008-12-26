@@ -1,0 +1,11 @@
+Karate Journal ChangeLog
+http://johnpwood.net/projects/webapps/karate-journal/
+
+Version 1.1 - 2008-12-25
+------------------------
+ * Switched out basic_markup with simple_markup for markup engine
+ * Moved app specific config into AppConfig class
+
+Version 1.0 - 2008-11-14
+------------------------
+ * Initial release

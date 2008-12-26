@@ -1,0 +1,15 @@
+<% if @results.empty? -%>
+   <div class="entry">
+      <p>No search results found</p>
+   </div>
+<% else -%>
+   <% @results.each do |entry| -%>
+      <div class="entry">
+         <strong><%= link_to(entry.title, :action => 'show_entry', :id => entry) %></strong> - 
+         <%= display_search_result_body(@search_terms, entry.body, entry.source) %>
+      </div>
+      <br />
+   <% end -%>
+<% end -%>
+<br />
+<%= link_to 'Back', :action => 'index' %>

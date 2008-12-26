@@ -1,0 +1,28 @@
+= About
+
+This is the Karate Journal web application.  Karate Journal is a wiki like tool
+that organizes notes from your training.  The SimpleMarkup class in the Ruby 
+core library is used to perform the markup.  See the documentation on that class
+for markup format documentation.
+
+More information, including a full list of features and screenshots, can be 
+found at http://johnpwood.net/projects/webapps/karate-journal/
+
+
+= Setup
+* Install rails (version 2.2 or higher)
+* Copy config/database.yml.template to config/database.yml and configure your
+database connections
+* Copy config/app_config.rb.template to config/app_config.rb and setup
+your preferences
+* Run "rake db:migrate" to setup your database
+
+
+= LICENSE
+MIT License.  See LICENCE for details.
+
+
+= AUTHOR
+Karate Journal was written by John Wood.  John can be reached at 
+john_p_wood@yahoo.com.
+
