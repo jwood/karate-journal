@@ -81,4 +81,41 @@ reverse_punch:
   body: Make sure your shoulders are square
   source: Master Funakoshi
   entry_type_id: 1
-  
+
+body_with_fragment:
+  id: 13
+  title: Visit from Mr. Ohshima
+  body: <%= <<-END
+    == Basics
+    We worked on the fumikomi from Bassai.
+    <lfrag ids="Bassai, Fumikomi">Mr. Ohshima said fumikomi should have a very strong feeling.</lfrag>
+    We also worked on oi-zuki.  <lfrag ids="Oi-Zuki">Mr. Ohshima stressed that we should not
+    move our front foot before making the punch.</lfrag>
+
+    == Heian Shodan
+    Towards the end of practice we spent some time working on Heian Shodan.
+
+    <bfrag ids="Heian Shodan">
+    === Heian Shodan
+    * In the first movement, hips go in without hesitation.  They are already open,
+    so just go!
+    * Don't move before you can "feel" your opponent.
+    * When "blocking" up the middle, feel as if you are attacking your opponent with
+    your elbow.
+    </bfrag>
+    END
+    %>
+  source: Mr. Ohshima
+  entry_type_id: 6
+
+bassai:
+  id: 14
+  title: Bassai
+  body: Very important kata for the hips.
+  entry_type_id: 2
+
+fumikomi:
+  id: 15
+  title: Fumikomi
+  body: Very natural, powerful stamping kick.
+  entry_type_id: 1

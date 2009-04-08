@@ -33,7 +33,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_equal 1, assigns(:other_entries).size
     assert assigns(:other_entries).include?(entries(:other))
     
-    assert_equal 1, assigns(:senior_visit_entries).size
+    assert_equal 2, assigns(:senior_visit_entries).size
     assert assigns(:senior_visit_entries).include?(entries(:ohshima_visit))
     
     assert_equal 1, assigns(:special_training_entries).size
