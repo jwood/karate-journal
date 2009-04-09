@@ -18,10 +18,10 @@ class MainControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template 'index'
     
-    assert_equal 5, assigns(:kihon_entries).size
+    assert_equal 6, assigns(:kihon_entries).size
     assert assigns(:kihon_entries).include?(entries(:oi_zuki))
     
-    assert_equal 1, assigns(:kata_entries).size
+    assert_equal 2, assigns(:kata_entries).size
     assert assigns(:kata_entries).include?(entries(:heian_shodan))
     
     assert_equal 1, assigns(:kumite_entries).size
@@ -102,9 +102,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_destroy
-    assert_nothing_raised {
-      Entry.find(entries(:oi_zuki).id)
-    }
+    assert_nothing_raised { Entry.find(entries(:oi_zuki).id) }
 
     post :destroy_entry, :id => entries(:oi_zuki).id
     assert_response :redirect
@@ -150,9 +148,21 @@ class MainControllerTest < Test::Unit::TestCase
     assert_template 'search'
 
     assert_not_nil assigns(:results)
-    assert_equal 2, assigns(:results).size
+    assert_equal 3, assigns(:results).size
     assert assigns(:results).include?(entries(:down_block))
     assert assigns(:results).include?(entries(:rising_block))
   end
+
+  def test_entry_with_line_fragments
+    get :show_entry, :id => entries(:bassai).id
+    assert_response :success
+    assert_template 'show_entry'
+  end
   
+  def test_entry_with_body_fragments
+    get :show_entry, :id => entries(:heian_shodan).id
+    assert_response :success
+    assert_template 'show_entry'
+  end
+
 end

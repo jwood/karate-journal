@@ -1,8 +1,5 @@
 class MainController < ApplicationController
 
-  #----------------------------------------------------------------------------#
-  # Display the entries on the homepage
-  #----------------------------------------------------------------------------#
   def index
     @kihon_entries = find_entries_for_type('Kihon')
     @kata_entries = find_entries_for_type('Kata')
@@ -14,9 +11,6 @@ class MainController < ApplicationController
     @experience_entries = find_entries_for_type('Experience')
   end
 
-  #----------------------------------------------------------------------------#
-  # Create a new entry or edit an existing one
-  #----------------------------------------------------------------------------#
   def edit_entry
     @entry = params[:id] && Entry.find_by_id(params[:id]) || Entry.new
     if request.post?
@@ -30,24 +24,15 @@ class MainController < ApplicationController
     end
   end
 
-  #----------------------------------------------------------------------------#
-  # Show an entry's details
-  #----------------------------------------------------------------------------#
   def show_entry
     @entry = Entry.find(params[:id])
   end
 
-  #----------------------------------------------------------------------------#
-  # Delete an entry
-  #----------------------------------------------------------------------------#
   def destroy_entry
     Entry.find(params[:id]).destroy
     redirect_to :action => 'index'
   end
   
-  #----------------------------------------------------------------------------#
-  # Search for entries
-  #----------------------------------------------------------------------------#
   def search
     query = params[:query]
     result_hash = {}
@@ -73,13 +58,8 @@ class MainController < ApplicationController
     @results = result_array.collect { |x| x[0] }
   end
   
-  #----------------------------------------------------------------------------#
   private 
-  #----------------------------------------------------------------------------#
   
-  #----------------------------------------------------------------------------#
-  # Count the occurences of the given word in a paragraph
-  #----------------------------------------------------------------------------#
   def count_occurrences(word, paragraph)
     count = 0
     paragraph.each(" ") do |pword| 
@@ -88,9 +68,6 @@ class MainController < ApplicationController
     count
   end
   
-  #----------------------------------------------------------------------------#
-  # Add entries to the search result list, and adjust their score as necessary
-  #----------------------------------------------------------------------------#
   def add_entries_to_search_results(results, entries, field, term, points)
     entries.each do |entry|
       if results[entry].nil?
@@ -102,9 +79,6 @@ class MainController < ApplicationController
     results
   end
   
-  #----------------------------------------------------------------------------#
-  # Find all entries of a given type
-  #----------------------------------------------------------------------------#
   def find_entries_for_type(type)
     Entry.find_all_by_entry_type_id(EntryType.find_by_description(type), :order => 'title')
   end

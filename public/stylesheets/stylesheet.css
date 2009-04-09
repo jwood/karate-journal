@@ -58,3 +58,9 @@ body {
 td {
     padding: 5px;
 }
+
+.fragment {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid black;
+}

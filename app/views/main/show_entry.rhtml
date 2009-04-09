@@ -1,12 +1,15 @@
 <div class="entry">
   <h2><%= h @entry.title %></h2>
   <hr />
-  <%= markup(@entry.body) %>
+
+  <%= markup(@entry.body_without_fragment_links) %>
   <hr />
 
+  <%= render_fragments(@entry) %>
+
   <% if !@entry.source.empty? -%>
-     <p><strong>Source: </strong><%= h @entry.source %></p>
-   <% end -%>
+    <p><strong>Source: </strong><%= h @entry.source %></p>
+  <% end -%>
 </div>
 
 <br />
