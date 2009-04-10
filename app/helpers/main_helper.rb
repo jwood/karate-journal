@@ -3,11 +3,12 @@ module MainHelper
   require 'rdoc/markup/simple_markup'
   require 'rdoc/markup/simple_markup/to_html'
   
-  def create_table_for(entries)
+  def create_table_for(entries, options = {})
     table_html =  "\n"
     table_html << "<table>\n"
     table_html << "  <tr>\n"
-  
+
+    entries = sort_entries(entries, options)
     table_html << add_entries_to_table(entries)
 
     table_html << "  </tr>\n"
@@ -39,6 +40,16 @@ module MainHelper
   end
 
   private
+
+  def sort_entries(entries, options)
+    if options.has_key?(:sort_by_name) && options[:sort_by_name] == true
+      entries.sort { |a, b| a.title <=> b.title }
+    elsif options.has_key?(:sort_by_date) && options[:sort_by_date] == true
+      entries.sort { |a, b| a.created_at <=> b.created_at }
+    else
+      entries
+    end
+  end
 
   def render_body_fragments(entry)
     text = ""
