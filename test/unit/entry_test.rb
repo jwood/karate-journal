@@ -16,6 +16,10 @@ class EntryTest < Test::Unit::TestCase
   def test_line_fragments
     assert entries(:bassai).line_fragments.include?(:source => entries(:body_with_fragment), :fragment => "Mr. Ohshima said fumikomi should have a very strong feeling.")
     assert entries(:fumikomi).line_fragments.include?(:source => entries(:body_with_fragment), :fragment => "Mr. Ohshima said fumikomi should have a very strong feeling.")
+
+    assert_equal 2, entries(:oi_zuki).line_fragments.size
+    assert entries(:oi_zuki).line_fragments.include?(:source => entries(:body_with_fragment), :fragment => "Mr. Ohshima stressed the importance of making oi-zuki in one movement.")
+    assert entries(:oi_zuki).line_fragments.include?(:source => entries(:body_with_fragment), :fragment => "Mr. Ohshima stressed that we should not move our front foot before making the punch.")
   end
 
   def test_body_fragments
