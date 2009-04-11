@@ -31,7 +31,8 @@ class Entry < ActiveRecord::Base
         text = text.sub(fragment_regex, "")
       end
     end
-    frags
+
+    frags.sort { |a,b| b[:source].created_at <=> a[:source].created_at }
   end
 
   def fragment_regex(fragment_type)

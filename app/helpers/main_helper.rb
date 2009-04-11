@@ -56,9 +56,9 @@ module MainHelper
     body_fragments = entry.body_fragments
     unless body_fragments.empty?
       body_fragments.each do |fragment|
-        text << "From " + link_to("#{h fragment[:source].title}", :action => "show_entry", :id => fragment[:source])
+        text << "From " + link_to("#{fragment[:source].title}", :action => "show_entry", :id => fragment[:source])
         text << "<div class='fragment'>\n"
-        text << markup(h fragment[:fragment])
+        text << markup(fragment[:fragment])
         text << "</div>\n"
       end
     end
