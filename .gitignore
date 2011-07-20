@@ -1,1 +1,4 @@
 log
+Capfile
+config/deploy.rb
+
