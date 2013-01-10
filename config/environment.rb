@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.15' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -41,7 +41,10 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
 
-  config.action_controller.session = { :session_key => "_myapp_session", :secret => "eff54b370bd5f3e91105bbf7c1c0b3788cc6a36f83b22d267bdb8be1e50dc64805aacf7ed90b051c310629ba4143c9b3bae8cee067052439b8e5a3f4335522a7" } 
+  config.action_controller.session = {
+    :key => '_myapp_session',
+    :secret => 'eff54b370bd5f3e91105bbf7c1c0b3788cc6a36f83b22d267bdb8be1e50dc64805aacf7ed90b051c310629ba4143c9b3bae8cee067052439b8e5a3f4335522a7'
+  } 
 
   # See Rails::Configuration for more options
 end

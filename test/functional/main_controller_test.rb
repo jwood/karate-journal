@@ -4,7 +4,7 @@ require 'main_controller'
 # Re-raise errors caught by the controller.
 class MainController; def rescue_action(e) raise e end; end
 
-class MainControllerTest < Test::Unit::TestCase
+class MainControllerTest < ActionController::TestCase
   fixtures :entries, :entry_types
 
   def setup
