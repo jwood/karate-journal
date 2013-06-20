@@ -87,7 +87,7 @@ class MainControllerTest < ActionController::TestCase
     entry.source = "Master Funakoshi and Tsutomu Ohshima"
 
     post :edit_entry, { :id => entry.id, :entry => entry.attributes }
-    assert_redirected_to :action => 'show_entry'
+    assert_redirected_to :controller => 'main', :action => 'show_entry', :id => entry.id
 
     get :show_entry, :id => entries(:oi_zuki).id
     assert_response :success
