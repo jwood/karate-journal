@@ -1,8 +1,8 @@
 module MainHelper
 
-  require 'rdoc/markup/simple_markup'
-  require 'rdoc/markup/simple_markup/to_html'
-  
+  require 'rdoc/markup'
+  require 'rdoc/markup/to_html'
+
   def create_table_for(entries, options = {})
     table_html =  "\n"
     table_html << "<table>\n"
@@ -13,15 +13,15 @@ module MainHelper
 
     table_html << "  </tr>\n"
     table_html << "</table>\n"
-    table_html    
+    table_html
   end
-  
+
   def markup(text)
-    p = SM::SimpleMarkup.new
-    h = SM::ToHtml.new
+    p = RDoc::Markup.new
+    h = RDoc::Markup::ToHtml.new
     p.convert(text, h)
   end
-  
+
   def display_search_result_body(search_terms, body, source)
     body = trim_search_result_body(search_terms, body, source)
     body = highlight_search_terms(search_terms, body)
@@ -82,7 +82,7 @@ module MainHelper
   def trim_search_result_body(search_terms, body, source)
     pre_post_size = 30
     max_len = 500
-    
+
     new_body = ""
     search_terms.each do |term|
       offset = body.upcase.index(term.upcase)
@@ -103,9 +103,9 @@ module MainHelper
 
     new_body.slice(0, max_len)
   end
-  
+
   def highlight_search_terms(search_terms, body)
-    search_terms.each do |term| 
+    search_terms.each do |term|
       regex = ""
       term.each_char { |char| regex << "[" + char.upcase + "|" + char.downcase + "]" }
       while body =~ /[^highlight">](#{regex})/
