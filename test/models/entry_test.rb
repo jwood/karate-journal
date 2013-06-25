@@ -1,6 +1,21 @@
 require 'test_helper'
 
 class EntryTest < ActiveSupport::TestCase
+
+  test "should be able to find entries by the entry type" do
+    entries = Entry.by_type(EntryType.KIHON)
+    assert_equal 6, entries.size
+    assert entries.include?(entries(:oi_zuki))
+    assert entries.include?(entries(:down_block))
+  end
+
+  test "should be able to order entries by their title" do
+    entries = Entry.all.ordered_by_title
+    assert_equal 15, entries.count
+    assert_equal "Bassai", entries.first.title
+    assert_equal "Visit with Mr. Ohshima at the dojo", entries.last.title
+  end
+
   def test_entry_type
     assert_equal entry_types(:kihon).id, entries(:oi_zuki).entry_type_id
   end
