@@ -2,4 +2,5 @@
 log
 Capfile
 config/deploy.rb
-
+config/database.yml
+tmp/cache/*

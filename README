@@ -10,11 +10,9 @@ found at http://johnpwood.net/projects/webapps/karate-journal/
 
 
 = Setup
-* Install rails (version 2.2 or higher)
+* Install rails (version 4.0 or higher)
 * Copy config/database.yml.template to config/database.yml and configure your
 database connections
-* Copy config/app_config.rb.template to config/app_config.rb and setup
-your preferences
 * Run "rake db:migrate" to setup your database
 
 
@@ -23,6 +21,6 @@ MIT License.  See LICENCE for details.
 
 
 = AUTHOR
-Karate Journal was written by John Wood.  John can be reached at 
-john_p_wood@yahoo.com.
+Karate Journal was written by John Wood.  John can be reached at
+john@johnpwood.net.
 

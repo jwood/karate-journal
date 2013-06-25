@@ -23,7 +23,7 @@ class Entry < ActiveRecord::Base
     frags = []
     fragment_regex = fragment_regex(fragment_type)
 
-    Entry.find(:all, :conditions => "body like '%#{self.title}%'").each do |entry|
+    Entry.where("body like '%#{self.title}%'").each do |entry|
       text = entry.body.gsub("\r\n", "[newline]")
       while text =~ fragment_regex
         fragment = $1.strip.gsub("[newline]", "\r\n")
@@ -38,5 +38,5 @@ class Entry < ActiveRecord::Base
   def fragment_regex(fragment_type)
     /<#{fragment_type} [^>]+#{self.title}[^>]*>([^<]+)<\/#{fragment_type}>/
   end
-  
+
 end
