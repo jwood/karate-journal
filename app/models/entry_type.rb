@@ -1,5 +1,7 @@
 class EntryType < ActiveRecord::Base
 
+  validates :description, presence: true
+
   private
 
   def self.method_missing(method, *args)
@@ -7,7 +9,7 @@ class EntryType < ActiveRecord::Base
   end
 
   def self.entry_types
-    @entry_types ||= Hash[*EntryType.all.map { |x| [x.description.upcase, x] }.flatten]
+    @entry_types ||= Hash[*EntryType.all.map { |x| [x.description.upcase.gsub(' ', '_'), x] }.flatten]
   end
 
 end

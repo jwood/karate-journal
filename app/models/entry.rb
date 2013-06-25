@@ -5,6 +5,9 @@ class Entry < ActiveRecord::Base
   scope :by_type, ->(entry_type) { where(entry_type_id: entry_type) }
   scope :ordered_by_title, -> { order('title') }
 
+  validates :title, presence: true
+  validates :body, presence: true
+
   def body_without_fragment_links
     body.gsub(/<lfrag [^>]+>/, "").gsub("</lfrag>", "").
          gsub(/<bfrag [^>]+>/, "").gsub("</bfrag>", "")
