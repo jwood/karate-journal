@@ -8,10 +8,9 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
-    # TODO: Don't hardcode username and password
     if Rails.env.production?
-      username = "jwood"
-      password = "password"
+      username = ApplicationConfig.username
+      password = ApplicationConfig.password
 
       if username.present? && password.present?
         authenticate_or_request_with_http_basic("KarateJournal") do |http_username, http_password|
