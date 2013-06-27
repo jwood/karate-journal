@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EntriesControllerTest < ActionController::TestCase
 
-  def test_index
+  test "should be able to get the complete list of entries" do
     get :index
     assert_response :success
     assert_template 'index'
@@ -32,9 +32,8 @@ class EntriesControllerTest < ActionController::TestCase
     assert assigns(:experience_entries).include?(entries(:nisei_week))
   end
 
-  def test_show_entry
-    get :show, :id => entries(:oi_zuki).id
-
+  test "should be able to fetch the details for a given entry" do
+    get :show, id: entries(:oi_zuki)
     assert_response :success
     assert_template 'show'
 
@@ -46,20 +45,42 @@ class EntriesControllerTest < ActionController::TestCase
     assert_equal 1, assigns(:entry).entry_type_id
   end
 
-  def test_get_form_for_new_entry
-    get :new
+  test "should show line fragments from other entries" do
+    get :show, id: entries(:bassai)
+    assert_response :success
+    assert_template 'show'
+    assert @response.body.include?("Mr. Ohshima said fumikomi should have a very strong feeling")
+  end
 
+  test "should show body fragments from other entries" do
+    get :show, id: entries(:heian_shodan)
+    assert_response :success
+    assert_template 'show'
+
+    assert @response.body.include?("In the first movement, hips go in without hesitation.")
+    assert @response.body.include?("When blocking up the middle")
+  end
+
+  test "should be able to fetch the form to create a new entry" do
+    get :new
     assert_response :success
     assert_template 'new'
 
     assert_not_nil assigns(:entry)
-    assert assigns(:entry).valid?
   end
 
-  def test_get_form_for_existing_entry
-    get :show, :id => entries(:oi_zuki).id
+  test "should be able to create a new entry" do
+    post :create, entry: { title: "Uraken", body: "Tight fist, loose arm.", source: "Tsutomu Ohshima", entry_type_id: 1 }
+    assert_redirected_to entry_path(assigns(:entry))
+
+    entry = Entry.find(assigns(:entry))
+    assert_equal "Uraken", entry.title
+  end
+
+  test "should be able to fetch the edit form for an existing entry" do
+    get :edit, id: entries(:oi_zuki)
     assert_response :success
-    assert_template 'show'
+    assert_template 'edit'
 
     assert_not_nil assigns(:entry)
     assert assigns(:entry).valid?
@@ -69,51 +90,43 @@ class EntriesControllerTest < ActionController::TestCase
     assert_equal 1, assigns(:entry).entry_type_id
   end
 
-  def test_post_update_for_existing_entry
+  test "should be able to update an existing entry" do
     entry = entries(:oi_zuki)
-    entry.title = "Oi-Zuki - Lunge Punch"
-    entry.body = "Bent that front knee, and breathe!"
-    entry.source = "Master Funakoshi and Tsutomu Ohshima"
-
-    put :update, { :id => entry.id, :entry => entry.attributes }
+    put :update, id: entry, entry: { title: "Oi-Zuki - Lunge Punch", body: "Bent that front knee, and breathe!", source: "Master Funakoshi and Tsutomu Ohshima" }
     assert_redirected_to entry_path(entry)
 
-    get :show, :id => entries(:oi_zuki).id
+    entry = Entry.find(entry)
+    assert_equal "Oi-Zuki - Lunge Punch", entry.title
+    assert_equal "Bent that front knee, and breathe!", entry.body
+    assert_equal "Master Funakoshi and Tsutomu Ohshima", entry.source
+    assert_equal 1, entry.entry_type_id
+  end
+
+  test "should be sent back to the edit screen if the update fails" do
+    entry = entries(:oi_zuki)
+    put :update, id: entry, entry: { title: "" }
     assert_response :success
-    assert_template 'show'
-
-    assert_not_nil assigns(:entry)
-    assert assigns(:entry).valid?
-    assert_equal "Oi-Zuki - Lunge Punch", assigns(:entry).title
-    assert_equal "Bent that front knee, and breathe!", assigns(:entry).body
-    assert_equal "Master Funakoshi and Tsutomu Ohshima", assigns(:entry).source
-    assert_equal 1, assigns(:entry).entry_type_id
+    assert_template 'edit'
   end
 
-  def test_destroy
-    assert_nothing_raised { Entry.find(entries(:oi_zuki).id) }
-
-    delete :destroy, :id => entries(:oi_zuki).id
-    assert_response :redirect
-    assert_redirected_to :action => 'index'
-
-    assert_raise(ActiveRecord::RecordNotFound) {
-      Entry.find(entries(:oi_zuki).id)
-    }
+  test "should be able to destroy an existing entry" do
+    assert Entry.find_by_id(entries(:oi_zuki))
+    delete :destroy, id: entries(:oi_zuki)
+    assert_redirected_to root_path
+    assert_nil Entry.find_by_id(entries(:oi_zuki))
   end
 
-  def test_simple_search
-    get :search, :query => "bend knee"
+  test "should be able to search all entries" do
+    get :search, query: "bend knee"
     assert_response :success
     assert_template 'search'
 
-    assert_not_nil assigns(:results)
     assert_equal 1, assigns(:results).size
     assert assigns(:results).include?(entries(:oi_zuki))
   end
 
-  def test_empty_search
-    get :search, :query => "lkjasdlfj asdlfkj"
+  test "should successfully handle a search that yields no results" do
+    get :search, query: "lkjasdlfj asdlfkj"
     assert_response :success
     assert_template 'search'
 
@@ -121,37 +134,23 @@ class EntriesControllerTest < ActionController::TestCase
     assert assigns(:results).empty?
   end
 
-  def test_search_with_long_body
-    get :search, :query => "specific search string"
+  test "should successfully handle searches against large entries" do
+    get :search, query: "specific search string"
     assert_response :success
     assert_template 'search'
 
-    assert_not_nil assigns(:results)
     assert_equal 1, assigns(:results).size
     assert assigns(:results).include?(entries(:down_block))
   end
 
-  def test_search_for_common_term
-    get :search, :query => "block"
+  test "should successfully handle searches for a common phrase" do
+    get :search, query: "block"
     assert_response :success
     assert_template 'search'
 
-    assert_not_nil assigns(:results)
     assert_equal 3, assigns(:results).size
     assert assigns(:results).include?(entries(:down_block))
     assert assigns(:results).include?(entries(:rising_block))
-  end
-
-  def test_entry_with_line_fragments
-    get :show, :id => entries(:bassai).id
-    assert_response :success
-    assert_template 'show'
-  end
-
-  def test_entry_with_body_fragments
-    get :show, :id => entries(:heian_shodan).id
-    assert_response :success
-    assert_template 'show'
   end
 
 end
