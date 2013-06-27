@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-KarateJournal::Application.config.secret_key_base = ENV['KARATE_JOURNAL_SECRET_TOKEN']
+KarateJournal::Application.config.secret_key_base = ApplicationConfig.secret_token
