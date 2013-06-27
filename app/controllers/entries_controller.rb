@@ -49,9 +49,9 @@ class EntriesController < ApplicationController
   end
 
   def search
-    query = params[:query]
+    @query = params[:query]
     result_hash = {}
-    @search_terms = query.split(' ')
+    @search_terms = @query.split(' ')
 
     @search_terms.each do |term|
       # Search for query in source
