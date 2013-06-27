@@ -30,11 +30,11 @@ class Entry < ActiveRecord::Base
     frags = []
     fragment_regex = fragment_regex(fragment_type)
 
-    Entry.where("body like '%#{self.title}%'").each do |entry|
+    Entry.where("body like ?", "%#{self.title}%").each do |entry|
       text = entry.body.gsub("\r\n", "[newline]")
       while text =~ fragment_regex
         fragment = $1.strip.gsub("[newline]", "\r\n")
-        frags << {:source => entry, :fragment => fragment}
+        frags << { source: entry, fragment: fragment }
         text = text.sub(fragment_regex, "")
       end
     end
