@@ -3,13 +3,14 @@
       <p>No search results found</p>
    </div>
 <% else %>
-   <% @results.each do |entry| -%>
+   <% @results.each do |entry| %>
       <div class="entry">
          <strong><%= link_to(entry.title, entry_path(entry)) %></strong> -
          <%= display_search_result_body(@search_terms, entry.body, entry.source) %>
       </div>
-      <br />
    <% end -%>
 <% end -%>
-<br />
-<%= link_to 'Back', entries_path %>
+
+<div id="actions">
+  <%= link_to 'Back', entries_path %>
+</div>

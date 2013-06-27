@@ -7,12 +7,14 @@
 
   <%= render_fragments(@entry) %>
 
-  <% if !@entry.source.empty? -%>
-    <p><strong>Source: </strong><%= h @entry.source %></p>
+  <% if @entry.source.present? -%>
+    <p><strong>Source: </strong><%= @entry.source %></p>
   <% end -%>
 </div>
 
-<br />
-<%= link_to 'Back', entries_path %> |
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Delete', entry_path(@entry), data: { confirm: 'Are you sure you would like to delete this entry?' }, :method => :delete %>
+<div id="actions">
+  <%= link_to 'Back', entries_path %> |
+  <%= link_to 'Edit', edit_entry_path(@entry) %> |
+  <%= link_to 'Delete', entry_path(@entry), data: { confirm: 'Are you sure you would like to delete this entry?' }, :method => :delete %>
+</div>
+

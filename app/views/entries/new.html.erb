@@ -1,13 +1,11 @@
-<h1>Editing entry</h1>
+<h1>New entry</h1>
 
-<%= form_tag entries_path do %>
-  <%= render partial: 'form_entry' %>
+<%= form_for @entry do |f| %>
+  <%= render partial: 'form_entry', locals: { f: f } %>
   <%= submit_tag 'Save' %>
 <% end %>
 
-<br />
+<div id="actions">
+  <%= link_to 'Back', entries_path %>
+</div>
 
-<% if @entry.id.present? %>
-  <%= link_to 'Show', show_entry_path(@entry) %> |
-<% end %>
-<%= link_to 'Back', entries_path %>

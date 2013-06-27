@@ -58,6 +58,7 @@ body {
 .entry {
   background: white;
   padding: 10px;
+  margin: 10px 0px;
   border: 1px solid black;
 }
 
@@ -79,3 +80,21 @@ td {
   border-left: 1px solid black;
 }
 
+#actions {
+  margin: 20px 0px;
+}
+
+.entry_field label {
+  display: block;
+}
+
+#errors {
+  background: #F78181;
+  color: white;
+  border: 2px solid red;
+  padding: 5px;
+}
+
+.field_with_errors input, .field_with_errors textarea {
+  border: 2px solid red;
+}

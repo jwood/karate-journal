@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Karate Journal</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
 
+<body>
   <div id="header">
     <h1><%= link_to 'Karate Journal', root_path %></h1>
   </div>
 
   <div id="search_box">
     <%= form_tag search_entries_path, method: :get do %>
-      <label for="query">Search:</label>
-      <%= text_field_tag :query, params[:query] %>
-      <%= submit_tag "Go" %>
+      <%= text_field_tag :query, @query %>
+      <%= submit_tag "Search" %>
     <% end %>
   </div>
 
   <div id="content">
     <%= yield :layout %>
   </div>
-
 </body>
+
 </html>
 
