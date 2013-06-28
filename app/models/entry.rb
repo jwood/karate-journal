@@ -4,6 +4,7 @@ class Entry < ActiveRecord::Base
 
   scope :by_type, ->(entry_type) { where(entry_type_id: entry_type) }
   scope :ordered_by_title, -> { order('title') }
+  scope :ordered_by_date, -> { order('created_at') }
 
   validates :title, presence: true
   validates :body, presence: true

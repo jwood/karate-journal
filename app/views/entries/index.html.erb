@@ -3,58 +3,58 @@
 <div class="section">
    <h2>Kihon</h2>
    <div id="kihon_content" class="section_content">
-     <%= create_table_for(@kihon_entries, sort_by_name: true) %>
+     <%= render partial: 'entries', locals: { entries: @kihon_entries } %>
    </div>
 </div>
 
 <div class="section">
    <h2>Kata</h2>
    <div class="section_content">
-     <%= create_table_for(@kata_entries, sort_by_name: true) %>
+     <%= render partial: 'entries', locals: { entries: @kata_entries } %>
    </div>
 </div>
 
 <div class="section">
    <h2>Kumite</h2>
    <div class="section_content">
-     <%= create_table_for(@kumite_entries, sort_by_name: true) %>
+     <%= render partial: 'entries', locals: { entries: @kumite_entries } %>
    </div>
 </div>
 
 <div class="section">
    <h2>Drills</h2>
    <div class="section_content">
-     <%= create_table_for(@drill_entries, sort_by_name: true) %>
+     <%= render partial: 'entries', locals: { entries: @drill_entries } %>
    </div>
 </div>
 
 <div class="section">
    <h2>Senior Visits</h2>
    <div class="section_content">
-     <%= create_table_for(@senior_visit_entries, sort_by_date: true) %>
+     <%= render partial: 'entries', locals: { entries: @senior_visit_entries } %>
    </div>
 </div>
 
 <div class="section">
    <h2>Special Trainings</h2>
    <div class="section_content">
-     <%= create_table_for(@special_training_entries, sort_by_date: true) %>
+     <%= render partial: 'entries', locals: { entries: @special_training_entries } %>
    </div>
 </div>
 
 <div class="section">
    <h2>Experiences</h2>
    <div class="section_content">
-     <%= create_table_for(@experience_entries, sort_by_date: true) %>
+     <%= render partial: 'entries', locals: { entries: @experience_entries } %>
    </div>
 </div>
 
 <% if @other_entries.any? %>
-   <div class="section">
-      <h2>Other</h2>
-      <div class="section_content">
-        <%= create_table_for(@other_entries, sort_by_name: true) %>
-      </div>
-   </div>
+  <div class="section">
+    <h2>Other</h2>
+    <div class="section_content">
+      <%= render partial: 'entries', locals: { entries: @other_entries } %>
+    </div>
+  </div>
 <% end %>
 

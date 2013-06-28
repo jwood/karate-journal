@@ -3,14 +3,14 @@ class EntriesController < ApplicationController
   before_filter :load_entry, only: [:show, :edit, :update, :destroy]
 
   def index
-    @kihon_entries            = Entry.by_type(EntryType.KIHON)
-    @kata_entries             = Entry.by_type(EntryType.KATA)
-    @kumite_entries           = Entry.by_type(EntryType.KUMITE)
-    @drill_entries            = Entry.by_type(EntryType.DRILL)
-    @other_entries            = Entry.by_type(EntryType.OTHER)
-    @senior_visit_entries     = Entry.by_type(EntryType.SENIOR_VISIT)
-    @special_training_entries = Entry.by_type(EntryType.SPECIAL_TRAINING)
-    @experience_entries       = Entry.by_type(EntryType.EXPERIENCE)
+    @kihon_entries            = Entry.by_type(EntryType.KIHON).ordered_by_title
+    @kata_entries             = Entry.by_type(EntryType.KATA).ordered_by_title
+    @kumite_entries           = Entry.by_type(EntryType.KUMITE).ordered_by_title
+    @drill_entries            = Entry.by_type(EntryType.DRILL).ordered_by_title
+    @other_entries            = Entry.by_type(EntryType.OTHER).ordered_by_title
+    @senior_visit_entries     = Entry.by_type(EntryType.SENIOR_VISIT).ordered_by_date
+    @special_training_entries = Entry.by_type(EntryType.SPECIAL_TRAINING).ordered_by_date
+    @experience_entries       = Entry.by_type(EntryType.EXPERIENCE).ordered_by_date
   end
 
   def show

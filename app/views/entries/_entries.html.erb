@@ -1,0 +1,11 @@
+<table>
+  <tbody>
+    <%= entries.in_groups_of(4) do |entry_group| %>
+      <tr>
+        <% entry_group.compact.each do |entry| %>
+          <td><%= link_to entry.title, entry_path(entry) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
