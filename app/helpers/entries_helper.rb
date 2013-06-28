@@ -6,7 +6,7 @@ module EntriesHelper
   def markup(text)
     p = RDoc::Markup.new
     h = RDoc::Markup::ToHtml.new
-    p.convert(text, h)
+    p.convert(text, h).html_safe
   end
 
   def display_search_result_body(search_terms, body, source)
@@ -15,46 +15,7 @@ module EntriesHelper
     body
   end
 
-  def render_fragments(entry)
-    fragments =  render_body_fragments(entry)
-    fragments << render_line_fragments(entry)
-
-    unless fragments.empty?
-      "<h2>From Other Entries</h2>\n#{fragments}<hr />\n".html_safe
-    else
-      ""
-    end
-  end
-
   private
-
-  def render_body_fragments(entry)
-    text = ""
-    body_fragments = entry.body_fragments
-    unless body_fragments.empty?
-      body_fragments.each do |fragment|
-        text << "From " + link_to("#{fragment[:source].title}", entry_path(fragment[:source]))
-        text << "<div class='fragment'>\n"
-        text << markup(fragment[:fragment])
-        text << "</div>\n"
-      end
-    end
-    text
-  end
-
-  def render_line_fragments(entry)
-    text = ""
-    line_fragments = entry.line_fragments
-    unless line_fragments.empty?
-      text = "<ul>\n"
-      line_fragments.each do |fragment|
-        text << "<li>#{markup(fragment[:fragment]).sub(/<\/p>$/, "")} - <small>" +
-          link_to("#{fragment[:source].title}", entry_path(fragment[:source])) + "</small></li>\n"
-      end
-      text << "</ul>\n"
-    end
-    text
-  end
 
   def trim_search_result_body(search_terms, body, source)
     pre_post_size = 30

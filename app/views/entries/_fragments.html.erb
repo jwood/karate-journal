@@ -1,0 +1,20 @@
+<h2>From Other Entries</h2>
+
+<% entry.body_fragments.each do |fragment| %>
+  From <%= link_to "#{fragment[:source].title}", entry_path(fragment[:source]) %>
+  <div class='fragment'>
+    <%= markup(fragment[:fragment]) %>
+  </div>
+<% end %>
+
+<% if entry.line_fragments.any? %>
+  <ul>
+    <%= entry.line_fragments.each do |fragment| %>
+      <li>
+        <%= markup(fragment[:fragment]).sub(/<\/p>$/, "") %> -
+          <small><%= link_to "#{fragment[:source].title}", entry_path(fragment[:source]) %></small>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+

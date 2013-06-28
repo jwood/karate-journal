@@ -2,10 +2,10 @@
   <h2><%= h @entry.title %></h2>
   <hr />
 
-  <%= markup(@entry.body_without_fragment_links).html_safe %>
+  <%= markup(@entry.body_without_fragment_links) %>
   <hr />
 
-  <%= render_fragments(@entry) %>
+  <%= render partial: 'fragments', locals: { entry: @entry } %>
 
   <% if @entry.source.present? -%>
     <p><strong>Source: </strong><%= @entry.source %></p>
