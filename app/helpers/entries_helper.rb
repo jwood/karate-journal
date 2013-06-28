@@ -20,7 +20,7 @@ module EntriesHelper
     fragments << render_line_fragments(entry)
 
     unless fragments.empty?
-      "<h2>From Other Entries</h2>\n#{fragments}<hr />\n"
+      "<h2>From Other Entries</h2>\n#{fragments}<hr />\n".html_safe
     else
       ""
     end
