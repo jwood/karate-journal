@@ -5,7 +5,9 @@
   <%= markup(@entry.body_without_fragment_links) %>
   <hr />
 
-  <%= render partial: 'fragments', locals: { entry: @entry } %>
+  <% if @entry.body_fragments.any? || @entry.line_fragments.any? %>
+    <%= render partial: 'fragments', locals: { entry: @entry } %>
+  <% end %>
 
   <% if @entry.source.present? -%>
     <p><strong>Source: </strong><%= @entry.source %></p>
