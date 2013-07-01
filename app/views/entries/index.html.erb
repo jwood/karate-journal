@@ -1,60 +1,14 @@
 <%= link_to 'Create New Entry', new_entry_path, id: 'create_link' %>
 
-<div class="section">
-   <h2>Kihon</h2>
-   <div id="kihon_content" class="section_content">
-     <%= render partial: 'entries', locals: { entries: @kihon_entries } %>
-   </div>
-</div>
-
-<div class="section">
-   <h2>Kata</h2>
-   <div class="section_content">
-     <%= render partial: 'entries', locals: { entries: @kata_entries } %>
-   </div>
-</div>
-
-<div class="section">
-   <h2>Kumite</h2>
-   <div class="section_content">
-     <%= render partial: 'entries', locals: { entries: @kumite_entries } %>
-   </div>
-</div>
-
-<div class="section">
-   <h2>Drills</h2>
-   <div class="section_content">
-     <%= render partial: 'entries', locals: { entries: @drill_entries } %>
-   </div>
-</div>
-
-<div class="section">
-   <h2>Senior Visits</h2>
-   <div class="section_content">
-     <%= render partial: 'entries', locals: { entries: @senior_visit_entries } %>
-   </div>
-</div>
-
-<div class="section">
-   <h2>Special Trainings</h2>
-   <div class="section_content">
-     <%= render partial: 'entries', locals: { entries: @special_training_entries } %>
-   </div>
-</div>
-
-<div class="section">
-   <h2>Experiences</h2>
-   <div class="section_content">
-     <%= render partial: 'entries', locals: { entries: @experience_entries } %>
-   </div>
-</div>
+<%= render partial: 'entry_group', locals: { group_name: "Kihon", entries: @kihon_entries } %>
+<%= render partial: 'entry_group', locals: { group_name: "Kata", entries: @kata_entries } %>
+<%= render partial: 'entry_group', locals: { group_name: "Kumite", entries: @kumite_entries } %>
+<%= render partial: 'entry_group', locals: { group_name: "Drills", entries: @drill_entries } %>
+<%= render partial: 'entry_group', locals: { group_name: "Senior Visits", entries: @senior_visit_entries } %>
+<%= render partial: 'entry_group', locals: { group_name: "Special Training", entries: @special_training_entries } %>
+<%= render partial: 'entry_group', locals: { group_name: "Experiences", entries: @experience_entries } %>
 
 <% if @other_entries.any? %>
-  <div class="section">
-    <h2>Other</h2>
-    <div class="section_content">
-      <%= render partial: 'entries', locals: { entries: @other_entries } %>
-    </div>
-  </div>
+  <%= render partial: 'entry_group', locals: { group_name: "Other", entries: @other_entries } %>
 <% end %>
 
