@@ -34,4 +34,5 @@ class EntryTest < ActiveSupport::TestCase
   test "should be able to get the body with body fragments" do
     assert entries(:heian_shodan).body_fragments.include?(source: entries(:body_with_fragment), fragment: "=== Heian Shodan * In the first movement, hips go in without hesitation.  They are already open, so just go! * Don't move before you can 'feel' your opponent. * When blocking up the middle, feel as if you are attacking your opponent with your elbow.")
   end
+
 end

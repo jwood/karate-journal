@@ -134,23 +134,4 @@ class EntriesControllerTest < ActionController::TestCase
     assert assigns(:results).empty?
   end
 
-  test "should successfully handle searches against large entries" do
-    get :search, query: "specific search string"
-    assert_response :success
-    assert_template 'search'
-
-    assert_equal 1, assigns(:results).size
-    assert assigns(:results).include?(entries(:down_block))
-  end
-
-  test "should successfully handle searches for a common phrase" do
-    get :search, query: "block"
-    assert_response :success
-    assert_template 'search'
-
-    assert_equal 3, assigns(:results).size
-    assert assigns(:results).include?(entries(:down_block))
-    assert assigns(:results).include?(entries(:rising_block))
-  end
-
 end

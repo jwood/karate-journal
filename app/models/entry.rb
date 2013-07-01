@@ -1,4 +1,5 @@
 class Entry < ActiveRecord::Base
+  extend EntrySearch
 
   has_one :entry_type
 
