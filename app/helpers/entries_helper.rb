@@ -12,7 +12,7 @@ module EntriesHelper
   def display_search_result_body(search_terms, body, source)
     body = trim_search_result_body(search_terms, body, source)
     body = highlight_search_terms(search_terms, body)
-    body
+    body.html_safe
   end
 
   private
@@ -50,7 +50,7 @@ module EntriesHelper
         body.gsub!($1, "<span class=\"highlight\">#{$1}</span>")
       end
     end
-    body.html_safe
+    body
   end
 
 end
