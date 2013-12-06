@@ -13,4 +13,4 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'capistrano', group: :development
+gem 'capistrano', '~> 2.15', group: :development
