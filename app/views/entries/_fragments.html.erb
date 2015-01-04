@@ -9,9 +9,9 @@
 
 <% if entry.line_fragments.any? %>
   <ul>
-    <%= entry.line_fragments.each do |fragment| %>
+    <% entry.line_fragments.each do |fragment| %>
       <li>
-        <%= markup(fragment[:fragment]).sub(/<\/p>$/, "") %> -
+        <%= markup(fragment[:fragment]).sub(/<\/p>$/, "").html_safe %> -
           <small><%= link_to "#{fragment[:source].title}", entry_path(fragment[:source]) %></small>
       </li>
     <% end %>
